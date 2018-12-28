@@ -11,8 +11,17 @@ public class FoodEntity extends BmobObject {
     private String foodImgUrl;
     private String foodDesc;
     private String foodName;
-    private String foodType;
+    private int foodType;
     private double foodPrice;
+    private String typeName;
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
+    }
 
     public double getFoodPrice() {
         return foodPrice;
@@ -46,11 +55,11 @@ public class FoodEntity extends BmobObject {
         this.foodName = foodName;
     }
 
-    public String getFoodType() {
+    public int getFoodType() {
         return foodType;
     }
 
-    public void setFoodType(String foodType) {
+    public void setFoodType(int foodType) {
         this.foodType = foodType;
     }
 }

@@ -10,6 +10,15 @@ import cn.bmob.v3.BmobObject;
 public class CategoryEntity extends BmobObject {
     private String name;
     private int type;
+    private boolean isSelected;
+
+    public boolean isSelected() {
+        return isSelected;
+    }
+
+    public void setSelected(boolean selected) {
+        isSelected = selected;
+    }
 
     public String getName() {
         return name;

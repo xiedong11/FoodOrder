@@ -1,6 +1,7 @@
 package com.zhuandian.oderapp.adpter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -26,6 +27,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     private Context context;
     private ItemClickListener itemClickListener;
 
+
     public void setItemClickListener(ItemClickListener itemClickListener) {
         this.itemClickListener = itemClickListener;
     }
@@ -44,6 +46,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     @Override
     public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.tvCategory.setText(mDatas.get(i).getName());
+        viewHolder.tvCategory.setBackgroundColor(mDatas.get(i).isSelected() ? Color.parseColor("#b3b2b2") : Color.parseColor("#ffffff"));
         viewHolder.tvCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -72,4 +75,5 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     public interface ItemClickListener {
         void itemClick(int foodType);
     }
+
 }
