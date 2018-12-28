@@ -6,16 +6,16 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_category_list_container"
         android:layout_width="120dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent" />
 
-    </LinearLayout>
 
-    <LinearLayout
+    <RelativeLayout
+        android:id="@+id/rl_food_list_container"
         android:layout_width="0dp"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_weight="1" />
 
-    </LinearLayout>
 </LinearLayout>
