@@ -6,16 +6,8 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 
-    <RelativeLayout
-        android:id="@+id/rl_category_list_container"
-        android:layout_width="110dp"
+    <android.support.v4.view.ViewPager
+        android:id="@+id/vp_page"
+        android:layout_width="match_parent"
         android:layout_height="match_parent" />
-
-
-    <RelativeLayout
-        android:id="@+id/rl_food_list_container"
-        android:layout_width="0dp"
-        android:layout_height="match_parent"
-        android:layout_weight="1" />
-
 </LinearLayout>

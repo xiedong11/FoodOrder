@@ -1,26 +1,33 @@
 package com.zhuandian.oderapp;
 
-import android.widget.RelativeLayout;
+import android.support.v4.view.ViewPager;
+
+import com.zhuandian.oderapp.adpter.HomeViewPageAdapter;
 import com.zhuandian.oderapp.base.BaseActivity;
-import com.zhuandian.oderapp.fragment.CategorgFragment;
-import com.zhuandian.oderapp.fragment.FoodFragment;
+import com.zhuandian.oderapp.base.BaseFragment;
+import com.zhuandian.oderapp.fragment.HomeFragment;
+
+import java.util.ArrayList;
+import java.util.List;
+
 import butterknife.BindView;
 
 
 public class MainActivity extends BaseActivity {
-    @BindView(R.id.rl_category_list_container)
-    RelativeLayout rlCategoryListContainer;
-    @BindView(R.id.rl_food_list_container)
-    RelativeLayout rlFoodListContainer;
-
-    @Override
-    public void initView() {
-        getSupportFragmentManager().beginTransaction().add(R.id.rl_category_list_container, new CategorgFragment()).commit();
-        getSupportFragmentManager().beginTransaction().add(R.id.rl_food_list_container, new FoodFragment()).commit();
-    }
+    @BindView(R.id.vp_page)
+    ViewPager vpPage;
 
     @Override
     protected int getLayoutId() {
         return R.layout.activity_main;
     }
+
+    @Override
+    public void initView() {
+        List<BaseFragment> fragments = new ArrayList<>();
+        fragments.add(new HomeFragment());
+        vpPage.setAdapter(new HomeViewPageAdapter(getSupportFragmentManager(), fragments));
+    }
+
+
 }
