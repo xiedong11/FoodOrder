@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="100dp">
+
+    <ImageView
+        android:id="@+id/iv_food"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/bmob_update_btn_check_off_holo_light" />
+
+    <TextView
+        android:id="@+id/tv_food_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:layout_toRightOf="@+id/iv_food"
+        android:text="标题"
+        android:textColor="#000"
+        android:textSize="16sp" />
+
+    <TextView
+        android:id="@+id/tv_food_desc"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/tv_food_name"
+        android:layout_toRightOf="@+id/iv_food"
+        android:text="标题"
+        android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_food_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="20dp"
+        android:layout_toRightOf="@+id/iv_food"
+        android:text="￥15"
+        android:textColor="#f00"
+        android:textSize="12sp" />
+
+    <ImageView
+        android:id="@+id/iv_add_food"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+        android:layout_margin="20dp"
+        android:src="@drawable/ic_launcher_background" />
+</RelativeLayout>

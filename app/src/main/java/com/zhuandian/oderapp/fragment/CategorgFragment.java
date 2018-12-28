@@ -13,7 +13,11 @@ import android.widget.Toast;
 
 import com.zhuandian.oderapp.R;
 import com.zhuandian.oderapp.adpter.CategoryListAdapter;
+import com.zhuandian.oderapp.base.BaseFragment;
 import com.zhuandian.oderapp.entity.CategoryEntity;
+import com.zhuandian.oderapp.event.ChoseTypeEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -28,20 +32,16 @@ import cn.bmob.v3.listener.FindListener;
  * author：xiedong
  * data：2018/12/28
  */
-public class CategorgFragment extends Fragment {
+public class CategorgFragment extends BaseFragment {
     @BindView(R.id.rv_list)
     RecyclerView rvList;
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_category, container, false);
-        ButterKnife.bind(this, view);
-        initData();
-        return view;
+    protected int getLayoutId() {
+        return R.layout.fragment_category;
     }
 
-    private void initData() {
+    protected void initData() {
         BmobQuery<CategoryEntity> query = new BmobQuery<>();
         query.order("-createdA")
                 .findObjects(new FindListener<CategoryEntity>() {
@@ -49,6 +49,12 @@ public class CategorgFragment extends Fragment {
                     public void done(List<CategoryEntity> list, BmobException e) {
                         if (e == null) {
                             CategoryListAdapter categoryListAdapter = new CategoryListAdapter(getActivity(), list);
+                            categoryListAdapter.setItemClickListener(new CategoryListAdapter.ItemClickListener() {
+                                @Override
+                                public void itemClick(int foodType) {
+                                    EventBus.getDefault().post(new ChoseTypeEvent(foodType));
+                                }
+                            });
                             rvList.setAdapter(categoryListAdapter);
                             rvList.setLayoutManager(new LinearLayoutManager(getActivity()));
                         } else {

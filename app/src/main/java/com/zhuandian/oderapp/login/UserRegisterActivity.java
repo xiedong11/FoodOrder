@@ -12,6 +12,7 @@ import android.widget.Toast;
 
 import com.zhuandian.oderapp.MainActivity;
 import com.zhuandian.oderapp.R;
+import com.zhuandian.oderapp.base.BaseActivity;
 import com.zhuandian.oderapp.entity.UserEntity;
 
 import butterknife.BindView;
@@ -20,7 +21,7 @@ import butterknife.OnClick;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.SaveListener;
 
-public class UserRegisterActivity extends AppCompatActivity {
+public class UserRegisterActivity extends BaseActivity {
 
     @BindView(R.id.et_username)
     EditText etUsername;
@@ -32,10 +33,13 @@ public class UserRegisterActivity extends AppCompatActivity {
     private String passWord;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_user_register);
-        ButterKnife.bind(this);
+    protected int getLayoutId() {
+        return R.layout.activity_user_register;
+    }
+
+    @Override
+    public void initView() {
+
     }
 
     @OnClick(R.id.tv_register)

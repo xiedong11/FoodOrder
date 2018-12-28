@@ -24,6 +24,11 @@ import butterknife.ButterKnife;
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
     private List<CategoryEntity> mDatas;
     private Context context;
+    private ItemClickListener itemClickListener;
+
+    public void setItemClickListener(ItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 
     public CategoryListAdapter(Context context, List<CategoryEntity> mDatas) {
         this.mDatas = mDatas;
@@ -37,8 +42,16 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     }
 
     @Override
-    public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.tvCategory.setText(mDatas.get(i).getName());
+        viewHolder.tvCategory.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) {
+                    itemClickListener.itemClick(mDatas.get(i).getType());
+                }
+            }
+        });
     }
 
     @Override
@@ -54,5 +67,9 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
+    }
+
+    public interface ItemClickListener {
+        void itemClick(int foodType);
     }
 }
