@@ -14,6 +14,15 @@ public class FoodEntity extends BmobObject {
     private int foodType;
     private double foodPrice;
     private String typeName;
+    private int foodCount; //本地缓存使用，不做网络数据存储
+
+    public int getFoodCount() {
+        return foodCount;
+    }
+
+    public void setFoodCount(int foodCount) {
+        this.foodCount = foodCount;
+    }
 
     public String getTypeName() {
         return typeName;

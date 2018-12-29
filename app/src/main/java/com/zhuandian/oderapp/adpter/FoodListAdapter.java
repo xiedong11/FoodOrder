@@ -7,11 +7,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zhuandian.oderapp.R;
 import com.zhuandian.oderapp.entity.FoodEntity;
+import com.zhuandian.oderapp.event.AlertOrderEvent;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.util.List;
 
@@ -39,11 +43,30 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     }
 
     @Override
-    public void onBindViewHolder(@NonNull ViewHolder viewHolder, int i) {
+    public void onBindViewHolder(@NonNull ViewHolder viewHolder, final int i) {
         Glide.with(context).load(mDatas.get(i).getFoodImgUrl()).into(viewHolder.ivFood);
         viewHolder.tvFoodName.setText(mDatas.get(i).getFoodName());
         viewHolder.tvFoodDesc.setText(mDatas.get(i).getFoodDesc());
         viewHolder.tvFoodPrice.setText("￥" + mDatas.get(i).getFoodPrice());
+        viewHolder.ivAddFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mDatas.get(i).setFoodCount(mDatas.get(i).getFoodCount() + 1);
+                EventBus.getDefault().post(new AlertOrderEvent(AlertOrderEvent.ADD_FOOD_ORDER, mDatas.get(i)));
+                notifyDataSetChanged();
+            }
+        });
+        viewHolder.ivDelFood.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mDatas.get(i).getFoodCount() > 0)
+                    mDatas.get(i).setFoodCount(mDatas.get(i).getFoodCount() - 1);
+                EventBus.getDefault().post(new AlertOrderEvent(AlertOrderEvent.DEL_FOOD_ORDER, mDatas.get(i)));
+                notifyDataSetChanged();
+            }
+        });
+        viewHolder.llAlertOrder.setVisibility(mDatas.get(i).getFoodCount() > 0 ? View.VISIBLE : View.GONE);
+        viewHolder.tvFoodCount.setText(mDatas.get(i).getFoodCount() + "");
     }
 
     @Override
@@ -60,12 +83,19 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         TextView tvFoodDesc;
         @BindView(R.id.tv_food_price)
         TextView tvFoodPrice;
+        @BindView(R.id.iv_del_food)
+        ImageView ivDelFood;
+        @BindView(R.id.tv_food_count)
+        TextView tvFoodCount;
         @BindView(R.id.iv_add_food)
         ImageView ivAddFood;
+        @BindView(R.id.ll_alert_order)
+        LinearLayout llAlertOrder;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ButterKnife.bind(this, itemView);
         }
     }
+
 }
