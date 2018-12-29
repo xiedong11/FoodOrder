@@ -1,20 +1,18 @@
 package com.zhuandian.oderapp;
 
-import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.view.ViewPager;
 
 import com.zhuandian.oderapp.adpter.HomeViewPageAdapter;
 import com.zhuandian.oderapp.base.BaseActivity;
 import com.zhuandian.oderapp.base.BaseFragment;
-import com.zhuandian.oderapp.fragment.HomeFragment;
-import com.zhuandian.oderapp.fragment.ShopStoreFragment;
+import com.zhuandian.oderapp.business.HomeFragment;
+import com.zhuandian.oderapp.business.ShopStoreFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 
 public class MainActivity extends BaseActivity {

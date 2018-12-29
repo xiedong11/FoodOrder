@@ -1,5 +1,7 @@
 package com.zhuandian.oderapp.entity;
 
+import java.io.Serializable;
+
 import cn.bmob.v3.BmobObject;
 
 /**
@@ -7,7 +9,7 @@ import cn.bmob.v3.BmobObject;
  * author：xiedong
  * data：2018/12/28
  */
-public class FoodEntity extends BmobObject {
+public class FoodEntity extends BmobObject implements Serializable {
     private String foodImgUrl;
     private String foodDesc;
     private String foodName;

@@ -8,6 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -30,6 +31,11 @@ import butterknife.ButterKnife;
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHolder> {
     private List<FoodEntity> mDatas;
     private Context context;
+    private OnItemClickListener itemClickListener;
+
+    public void setItemClickListener(OnItemClickListener itemClickListener) {
+        this.itemClickListener = itemClickListener;
+    }
 
     public FoodListAdapter(List<FoodEntity> mDatas, Context context) {
         this.mDatas = mDatas;
@@ -67,6 +73,14 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         });
         viewHolder.llAlertOrder.setVisibility(mDatas.get(i).getFoodCount() > 0 ? View.VISIBLE : View.GONE);
         viewHolder.tvFoodCount.setText(mDatas.get(i).getFoodCount() + "");
+        viewHolder.rlRootContainer.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (itemClickListener != null) {
+                    itemClickListener.onClick(mDatas.get(i));
+                }
+            }
+        });
     }
 
     @Override
@@ -91,6 +105,8 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         ImageView ivAddFood;
         @BindView(R.id.ll_alert_order)
         LinearLayout llAlertOrder;
+        @BindView(R.id.rl_root_container)
+        RelativeLayout rlRootContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -98,4 +114,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         }
     }
 
+    public interface OnItemClickListener {
+        void onClick(FoodEntity foodEntity);
+    }
 }

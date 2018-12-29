@@ -1,23 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:id="@+id/rl_root_container"
     android:layout_width="match_parent"
-    android:layout_height="100dp">
+    android:layout_height="match_parent">
 
     <ImageView
         android:id="@+id/iv_food"
-        android:layout_width="80dp"
-        android:layout_height="80dp"
-        android:layout_centerVertical="true"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:scaleType="fitXY"
         android:src="@drawable/bmob_update_btn_check_off_holo_light" />
+
+    <!--<ImageView-->
+    <!--android:id="@+id/iv_finish_page"-->
+    <!--android:layout_width="25dp"-->
+    <!--android:layout_height="25dp"-->
+    <!--android:layout_alignParentRight="true"-->
+    <!--android:layout_margin="15dp"-->
+    <!--android:scaleType="fitXY"-->
+    <!--android:src="@drawable/ic_del_food" />-->
 
     <TextView
         android:id="@+id/tv_food_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="5dp"
-        android:layout_marginTop="5dp"
-        android:layout_toRightOf="@+id/iv_food"
+        android:layout_below="@+id/iv_food"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="20dp"
         android:text="标题"
         android:textColor="#000"
         android:textSize="16sp" />
@@ -27,8 +36,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/tv_food_name"
-        android:layout_marginLeft="5dp"
-        android:layout_toRightOf="@+id/iv_food"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="10dp"
         android:text="标题"
         android:textSize="12sp" />
 
@@ -36,22 +45,37 @@
         android:id="@+id/tv_food_price"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/tv_food_desc"
+        android:layout_alignParentRight="true"
         android:layout_marginLeft="5dp"
+        android:layout_marginRight="20dp"
         android:layout_marginBottom="20dp"
-        android:layout_toRightOf="@+id/iv_food"
         android:text="￥15"
         android:textColor="#f00"
         android:textSize="12sp" />
+
+    <TextView
+        android:id="@+id/tv_back"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_below="@+id/tv_food_price"
+        android:layout_marginLeft="40dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="40dp"
+        android:background="@color/colorAccent"
+        android:gravity="center"
+        android:text="去点餐"
+        android:textColor="#fff" />
 
     <LinearLayout
         android:id="@+id/ll_alert_order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="50dp"
         android:layout_toLeftOf="@+id/iv_add_food"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:visibility="gone">
 
         <ImageView
             android:id="@+id/iv_del_food"
@@ -74,6 +98,7 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
         android:layout_marginRight="20dp"
-        android:layout_marginBottom="20dp"
-        android:src="@drawable/ic_add_food" />
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/ic_add_food"
+        android:visibility="gone" />
 </RelativeLayout>

@@ -1,15 +1,13 @@
-package com.zhuandian.oderapp.fragment;
+package com.zhuandian.oderapp.business;
 
 
 import android.content.DialogInterface;
-import android.os.Bundle;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,9 +29,7 @@ import java.util.Comparator;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 import butterknife.OnClick;
-import butterknife.Unbinder;
 import cn.bmob.v3.BmobQuery;
 import cn.bmob.v3.exception.BmobException;
 import cn.bmob.v3.listener.FindListener;
@@ -102,6 +98,14 @@ public class HomeFragment extends BaseFragment {
                             foodListAdapter.notifyDataSetChanged();
                             foodLayoutManager = new LinearLayoutManager(getActivity());
                             rvFoodList.setLayoutManager(foodLayoutManager);
+                            foodListAdapter.setItemClickListener(new FoodListAdapter.OnItemClickListener() {
+                                @Override
+                                public void onClick(FoodEntity foodEntity) {
+                                    Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
+                                    intent.putExtra("food", foodEntity);
+                                    startActivity(intent);
+                                }
+                            });
                         } else {
                             Toast.makeText(getActivity(), "数据加载异常", Toast.LENGTH_SHORT).show();
                         }
