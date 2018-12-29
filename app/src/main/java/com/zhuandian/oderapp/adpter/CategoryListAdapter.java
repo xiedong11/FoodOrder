@@ -46,7 +46,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
     @Override
     public void onBindViewHolder(@NonNull CategoryListAdapter.ViewHolder viewHolder, final int i) {
         viewHolder.tvCategory.setText(mDatas.get(i).getName());
-        viewHolder.tvCategory.setBackgroundColor(mDatas.get(i).isSelected() ? Color.parseColor("#b3b2b2") : Color.parseColor("#ffffff"));
+        viewHolder.tvCategory.setBackgroundColor(mDatas.get(i).isSelected() ? Color.parseColor("#f8f8f8") : Color.parseColor("#ffffff"));
         viewHolder.tvCategory.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
