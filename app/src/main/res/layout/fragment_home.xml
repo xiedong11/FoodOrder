@@ -47,6 +47,7 @@
         android:layout_height="55dp"
         android:background="#424244">
 
+
         <ImageView
             android:id="@+id/iv_shop_car"
             android:layout_width="40dp"
@@ -56,7 +57,19 @@
             android:src="@drawable/ic_shop_car" />
 
         <TextView
-            android:id="@+id/tv_total_count"
+            android:id="@+id/tv_food_count"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginTop="2dp"
+            android:background="@drawable/shape_message_tip"
+            android:gravity="center"
+            android:text="1"
+            android:textColor="#fff"
+            android:visibility="gone" />
+
+        <TextView
+            android:id="@+id/tv_total_price"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_marginLeft="20dp"
@@ -67,7 +80,6 @@
             android:textSize="14sp" />
 
         <TextView
-            android:id="@+id/tv_total_price"
             android:layout_width="120dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"
@@ -75,5 +87,17 @@
             android:text="￥20起送"
             android:textColor="#dad3d3"
             android:textSize="15sp" />
+
+        <TextView
+            android:id="@+id/tv_to_order_page"
+            android:layout_width="120dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:background="@color/colorAccent"
+            android:gravity="center"
+            android:text="去结算"
+            android:textColor="#dad3d3"
+            android:textSize="15sp"
+            android:visibility="gone" />
     </RelativeLayout>
 </LinearLayout>
