@@ -4,12 +4,10 @@ import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
-
 import com.bumptech.glide.Glide;
 import com.zhuandian.oderapp.R;
 import com.zhuandian.oderapp.base.BaseActivity;
 import com.zhuandian.oderapp.entity.FoodEntity;
-
 import butterknife.BindView;
 import butterknife.OnClick;
 

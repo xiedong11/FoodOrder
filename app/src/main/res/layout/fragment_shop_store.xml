@@ -4,8 +4,8 @@
     android:layout_height="match_parent">
 
     <TextView
-        android:text="fdsafdsafdasfsda"
-        android:layout_centerInParent="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content" />
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="这里是商家展示页" />
 </RelativeLayout>

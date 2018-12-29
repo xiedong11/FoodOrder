@@ -57,6 +57,7 @@ public class HomeFragment extends BaseFragment {
     private List<FoodEntity> shopCarList = new ArrayList<>();
     private CategoryListAdapter categoryListAdapter;
     private int userScrollState;
+    private FoodListAdapter foodListAdapter;
 
 
     @Override
@@ -93,7 +94,7 @@ public class HomeFragment extends BaseFragment {
                                 }
                             });
                             foodEntityList.addAll(list);
-                            FoodListAdapter foodListAdapter = new FoodListAdapter(foodEntityList, getActivity());
+                            foodListAdapter = new FoodListAdapter(foodEntityList, getActivity());
                             rvFoodList.setAdapter(foodListAdapter);
                             foodListAdapter.notifyDataSetChanged();
                             foodLayoutManager = new LinearLayoutManager(getActivity());
@@ -235,6 +236,7 @@ public class HomeFragment extends BaseFragment {
                         shopCarList.clear();
                         initShopCarData();
                         foodEntityList.clear();
+                        foodListAdapter.notifyDataSetChanged();
                         initFoodList();
                         dialog.dismiss();
                     }
