@@ -73,7 +73,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         });
         viewHolder.llAlertOrder.setVisibility(mDatas.get(i).getFoodCount() > 0 ? View.VISIBLE : View.GONE);
         viewHolder.tvFoodCount.setText(mDatas.get(i).getFoodCount() + "");
-        viewHolder.rlRootContainer.setOnClickListener(new View.OnClickListener() {
+        viewHolder.ivFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 if (itemClickListener != null) {
@@ -105,8 +105,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         ImageView ivAddFood;
         @BindView(R.id.ll_alert_order)
         LinearLayout llAlertOrder;
-        @BindView(R.id.rl_root_container)
-        RelativeLayout rlRootContainer;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
