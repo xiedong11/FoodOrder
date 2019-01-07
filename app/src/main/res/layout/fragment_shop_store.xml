@@ -3,18 +3,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:scaleType="fitXY"
+        android:src="@drawable/ic_shop" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
-        android:text="小泉居餐馆订餐系统\n\n主营范围"
+        android:text="商家24小时不打烊，欢迎爱吃甜品的你哟~"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="18sp" />
-
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="500dp"
-        android:src="@drawable/ic_shop" />
 </RelativeLayout>

@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.zhuandian.oderapp.R;
-import com.zhuandian.oderapp.entity.CategoryEntity;
+import com.zhuandian.oderapp.entity.SweetCategoryEntity;
 
 import java.util.List;
 
@@ -23,7 +23,7 @@ import butterknife.ButterKnife;
  * data：2018/12/28
  */
 public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapter.ViewHolder> {
-    private List<CategoryEntity> mDatas;
+    private List<SweetCategoryEntity> mDatas;
     private Context context;
     private ItemClickListener itemClickListener;
 
@@ -32,7 +32,7 @@ public class CategoryListAdapter extends RecyclerView.Adapter<CategoryListAdapte
         this.itemClickListener = itemClickListener;
     }
 
-    public CategoryListAdapter(Context context, List<CategoryEntity> mDatas) {
+    public CategoryListAdapter(Context context, List<SweetCategoryEntity> mDatas) {
         this.mDatas = mDatas;
         this.context = context;
     }

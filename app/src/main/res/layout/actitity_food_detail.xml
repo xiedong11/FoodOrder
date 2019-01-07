@@ -64,7 +64,7 @@
         android:layout_marginRight="40dp"
         android:background="@color/colorAccent"
         android:gravity="center"
-        android:text="去点餐"
+        android:text="加入购物车"
         android:textColor="#fff" />
 
     <LinearLayout

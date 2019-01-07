@@ -8,12 +8,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zhuandian.oderapp.R;
-import com.zhuandian.oderapp.entity.FoodEntity;
+import com.zhuandian.oderapp.entity.SweetFoodEntity;
 import com.zhuandian.oderapp.event.AlertOrderEvent;
 
 import org.greenrobot.eventbus.EventBus;
@@ -29,7 +28,7 @@ import butterknife.ButterKnife;
  * data：2018/12/28
  */
 public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHolder> {
-    private List<FoodEntity> mDatas;
+    private List<SweetFoodEntity> mDatas;
     private Context context;
     private OnItemClickListener itemClickListener;
 
@@ -37,7 +36,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
         this.itemClickListener = itemClickListener;
     }
 
-    public FoodListAdapter(List<FoodEntity> mDatas, Context context) {
+    public FoodListAdapter(List<SweetFoodEntity> mDatas, Context context) {
         this.mDatas = mDatas;
         this.context = context;
     }
@@ -113,6 +112,6 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.ViewHo
     }
 
     public interface OnItemClickListener {
-        void onClick(FoodEntity foodEntity);
+        void onClick(SweetFoodEntity sweetFoodEntity);
     }
 }

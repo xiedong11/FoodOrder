@@ -7,7 +7,7 @@ import cn.bmob.v3.BmobObject;
  * author：xiedong
  * data：2018/12/28
  */
-public class CategoryEntity extends BmobObject {
+public class SweetCategoryEntity extends BmobObject {
     private String name;
     private int type;
     private boolean isSelected;

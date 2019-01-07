@@ -15,8 +15,8 @@ import com.zhuandian.oderapp.R;
 import com.zhuandian.oderapp.adpter.CategoryListAdapter;
 import com.zhuandian.oderapp.adpter.FoodListAdapter;
 import com.zhuandian.oderapp.base.BaseFragment;
-import com.zhuandian.oderapp.entity.CategoryEntity;
-import com.zhuandian.oderapp.entity.FoodEntity;
+import com.zhuandian.oderapp.entity.SweetCategoryEntity;
+import com.zhuandian.oderapp.entity.SweetFoodEntity;
 import com.zhuandian.oderapp.event.AlertOrderEvent;
 import com.zhuandian.oderapp.event.BindEventBus;
 
@@ -52,9 +52,9 @@ public class HomeFragment extends BaseFragment {
     @BindView(R.id.tv_to_order_page)
     TextView tvToOrderPage;
     private LinearLayoutManager foodLayoutManager;
-    private List<FoodEntity> foodEntityList = new ArrayList<>();
-    private List<CategoryEntity> categoryEntityList = new ArrayList<>();
-    private List<FoodEntity> shopCarList = new ArrayList<>();
+    private List<SweetFoodEntity> sweetFoodEntityList = new ArrayList<>();
+    private List<SweetCategoryEntity> sweetCategoryEntityList = new ArrayList<>();
+    private List<SweetFoodEntity> shopCarList = new ArrayList<>();
     private CategoryListAdapter categoryListAdapter;
     private int userScrollState;
     private FoodListAdapter foodListAdapter;
@@ -72,15 +72,15 @@ public class HomeFragment extends BaseFragment {
     }
 
     private void initFoodList() {
-        BmobQuery<FoodEntity> query = new BmobQuery<>();
+        BmobQuery<SweetFoodEntity> query = new BmobQuery<>();
         query.order("-createdA")
-                .findObjects(new FindListener<FoodEntity>() {
+                .findObjects(new FindListener<SweetFoodEntity>() {
                     @Override
-                    public void done(List<FoodEntity> list, BmobException e) {
+                    public void done(List<SweetFoodEntity> list, BmobException e) {
                         if (e == null) {
-                            Collections.sort(list, new Comparator<FoodEntity>() {
+                            Collections.sort(list, new Comparator<SweetFoodEntity>() {
                                 @Override
-                                public int compare(FoodEntity o1, FoodEntity o2) {
+                                public int compare(SweetFoodEntity o1, SweetFoodEntity o2) {
                                     //进行升序排列
                                     if (o1.getFoodType() > o2.getFoodType()) {
                                         return 1;
@@ -93,17 +93,17 @@ public class HomeFragment extends BaseFragment {
 //                                    return o1.getFoodType() + "".compareTo(o2.getFoodType() + "");
                                 }
                             });
-                            foodEntityList.addAll(list);
-                            foodListAdapter = new FoodListAdapter(foodEntityList, getActivity());
+                            sweetFoodEntityList.addAll(list);
+                            foodListAdapter = new FoodListAdapter(sweetFoodEntityList, getActivity());
                             rvFoodList.setAdapter(foodListAdapter);
                             foodListAdapter.notifyDataSetChanged();
                             foodLayoutManager = new LinearLayoutManager(getActivity());
                             rvFoodList.setLayoutManager(foodLayoutManager);
                             foodListAdapter.setItemClickListener(new FoodListAdapter.OnItemClickListener() {
                                 @Override
-                                public void onClick(FoodEntity foodEntity) {
+                                public void onClick(SweetFoodEntity sweetFoodEntity) {
                                     Intent intent = new Intent(getActivity(), FoodDetailActivity.class);
-                                    intent.putExtra("food", foodEntity);
+                                    intent.putExtra("food", sweetFoodEntity);
                                     startActivity(intent);
                                 }
                             });
@@ -128,11 +128,11 @@ public class HomeFragment extends BaseFragment {
             public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy) {
                 super.onScrolled(recyclerView, dx, dy);
                 if (userScrollState == 1 || userScrollState == 2) {
-                    int firstVisibleItemFoodType = foodEntityList.get(foodLayoutManager.findFirstVisibleItemPosition()).getFoodType();
-                    for (int i = 0; i < categoryEntityList.size(); i++) {
-                        categoryEntityList.get(i).setSelected(false);
-                        if (firstVisibleItemFoodType == categoryEntityList.get(i).getType()) {
-                            categoryEntityList.get(i).setSelected(true);
+                    int firstVisibleItemFoodType = sweetFoodEntityList.get(foodLayoutManager.findFirstVisibleItemPosition()).getFoodType();
+                    for (int i = 0; i < sweetCategoryEntityList.size(); i++) {
+                        sweetCategoryEntityList.get(i).setSelected(false);
+                        if (firstVisibleItemFoodType == sweetCategoryEntityList.get(i).getType()) {
+                            sweetCategoryEntityList.get(i).setSelected(true);
                             rvCategoryList.scrollToPosition(i);
                             categoryListAdapter.notifyDataSetChanged();
                         }
@@ -143,15 +143,15 @@ public class HomeFragment extends BaseFragment {
     }
 
     protected void initCategoryList() {
-        BmobQuery<CategoryEntity> query = new BmobQuery<>();
+        BmobQuery<SweetCategoryEntity> query = new BmobQuery<>();
         query.order("-createdA")
-                .findObjects(new FindListener<CategoryEntity>() {
+                .findObjects(new FindListener<SweetCategoryEntity>() {
                     @Override
-                    public void done(List<CategoryEntity> list, BmobException e) {
+                    public void done(List<SweetCategoryEntity> list, BmobException e) {
                         if (e == null) {
-                            Collections.sort(list, new Comparator<CategoryEntity>() {
+                            Collections.sort(list, new Comparator<SweetCategoryEntity>() {
                                 @Override
-                                public int compare(CategoryEntity o1, CategoryEntity o2) {
+                                public int compare(SweetCategoryEntity o1, SweetCategoryEntity o2) {
                                     //进行升序排列
                                     if (o1.getType() > o2.getType()) {
                                         return 1;
@@ -162,22 +162,22 @@ public class HomeFragment extends BaseFragment {
                                     return -1;
                                 }
                             });
-                            categoryEntityList.addAll(list);
-                            categoryListAdapter = new CategoryListAdapter(getActivity(), categoryEntityList);
+                            sweetCategoryEntityList.addAll(list);
+                            categoryListAdapter = new CategoryListAdapter(getActivity(), sweetCategoryEntityList);
                             categoryListAdapter.setItemClickListener(new CategoryListAdapter.ItemClickListener() {
                                 @Override
                                 public void itemClick(int foodType) {
 
-                                    for (int i = 0; i < categoryEntityList.size(); i++) {
-                                        categoryEntityList.get(i).setSelected(false);
-                                        if (foodType == categoryEntityList.get(i).getType()) {
-                                            categoryEntityList.get(i).setSelected(true);
+                                    for (int i = 0; i < sweetCategoryEntityList.size(); i++) {
+                                        sweetCategoryEntityList.get(i).setSelected(false);
+                                        if (foodType == sweetCategoryEntityList.get(i).getType()) {
+                                            sweetCategoryEntityList.get(i).setSelected(true);
                                             categoryListAdapter.notifyDataSetChanged();
                                         }
                                     }
 
-                                    for (int i = 0; i < foodEntityList.size(); i++) {
-                                        if (foodType == foodEntityList.get(i).getFoodType()) {
+                                    for (int i = 0; i < sweetFoodEntityList.size(); i++) {
+                                        if (foodType == sweetFoodEntityList.get(i).getFoodType()) {
                                             rvFoodList.scrollToPosition(i);
                                         }
                                     }
@@ -195,10 +195,10 @@ public class HomeFragment extends BaseFragment {
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onEventBusReceiver(AlertOrderEvent alertOrderEvent) {
         if (alertOrderEvent.getType() == AlertOrderEvent.ADD_FOOD_ORDER) {
-            shopCarList.add(alertOrderEvent.getFoodEntity());
+            shopCarList.add(alertOrderEvent.getSweetFoodEntity());
         } else if (alertOrderEvent.getType() == AlertOrderEvent.DEL_FOOD_ORDER) {
             for (int i = 0; i < shopCarList.size(); i++) {
-                if (alertOrderEvent.getFoodEntity().getFoodName().equals(shopCarList.get(i).getFoodName())) {
+                if (alertOrderEvent.getSweetFoodEntity().getFoodName().equals(shopCarList.get(i).getFoodName())) {
                     shopCarList.remove(i);
                     break;
                 }
@@ -213,8 +213,8 @@ public class HomeFragment extends BaseFragment {
             tvToOrderPage.setVisibility(View.VISIBLE);
             tvFoodCount.setText(shopCarList.size() + "");
             double totalParice = 0;
-            for (FoodEntity foodEntity : shopCarList) {
-                totalParice += foodEntity.getFoodPrice();
+            for (SweetFoodEntity sweetFoodEntity : shopCarList) {
+                totalParice += sweetFoodEntity.getFoodPrice();
             }
             tvTotalPrice.setText("￥" + totalParice);
         } else {
@@ -235,7 +235,7 @@ public class HomeFragment extends BaseFragment {
                     public void onClick(DialogInterface dialog, int which) {
                         shopCarList.clear();
                         initShopCarData();
-                        foodEntityList.clear();
+                        sweetFoodEntityList.clear();
                         foodListAdapter.notifyDataSetChanged();
                         initFoodList();
                         dialog.dismiss();

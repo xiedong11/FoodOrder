@@ -9,14 +9,23 @@ import cn.bmob.v3.BmobObject;
  * author：xiedong
  * data：2018/12/28
  */
-public class FoodEntity extends BmobObject implements Serializable {
+public class SweetFoodEntity extends BmobObject implements Serializable {
     private String foodImgUrl;
     private String foodDesc;
     private String foodName;
     private int foodType;
     private double foodPrice;
     private String typeName;
+    private int foodId;
     private int foodCount; //本地缓存使用，不做网络数据存储
+
+    public int getFoodId() {
+        return foodId;
+    }
+
+    public void setFoodId(int foodId) {
+        this.foodId = foodId;
+    }
 
     public int getFoodCount() {
         return foodCount;

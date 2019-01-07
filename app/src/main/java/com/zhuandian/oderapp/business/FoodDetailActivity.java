@@ -7,7 +7,7 @@ import android.widget.TextView;
 import com.bumptech.glide.Glide;
 import com.zhuandian.oderapp.R;
 import com.zhuandian.oderapp.base.BaseActivity;
-import com.zhuandian.oderapp.entity.FoodEntity;
+import com.zhuandian.oderapp.entity.SweetFoodEntity;
 import butterknife.BindView;
 import butterknife.OnClick;
 
@@ -33,7 +33,7 @@ public class FoodDetailActivity extends BaseActivity {
     LinearLayout llAlertOrder;
     @BindView(R.id.iv_add_food)
     ImageView ivAddFood;
-    private FoodEntity foodEntity;
+    private SweetFoodEntity sweetFoodEntity;
 
 
     @Override
@@ -43,11 +43,11 @@ public class FoodDetailActivity extends BaseActivity {
 
     @Override
     public void initView() {
-        foodEntity = (FoodEntity) getIntent().getSerializableExtra("food");
-        Glide.with(this).load(foodEntity.getFoodImgUrl()).into(ivFood);
-        tvFoodName.setText(foodEntity.getFoodName());
-        tvFoodDesc.setText(foodEntity.getFoodDesc());
-        tvFoodPrice.setText("￥" + foodEntity.getFoodPrice());
+        sweetFoodEntity = (SweetFoodEntity) getIntent().getSerializableExtra("food");
+        Glide.with(this).load(sweetFoodEntity.getFoodImgUrl()).into(ivFood);
+        tvFoodName.setText(sweetFoodEntity.getFoodName());
+        tvFoodDesc.setText(sweetFoodEntity.getFoodDesc());
+        tvFoodPrice.setText("￥" + sweetFoodEntity.getFoodPrice());
     }
 
 
