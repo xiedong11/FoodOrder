@@ -8,10 +8,13 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.view.animation.AlphaAnimation;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.zhuandian.oderapp.R;
+import com.zhuandian.oderapp.Utils.ViewUtils;
 import com.zhuandian.oderapp.adpter.CategoryListAdapter;
 import com.zhuandian.oderapp.adpter.FoodListAdapter;
 import com.zhuandian.oderapp.base.BaseFragment;
@@ -52,6 +55,8 @@ public class HomeFragment extends BaseFragment {
     TextView tvTotalPrice;
     @BindView(R.id.tv_to_order_page)
     TextView tvToOrderPage;
+    @BindView(R.id.iv_shop_car)
+    ImageView ivShopCar;
     private LinearLayoutManager foodLayoutManager;
     private List<SweetFoodEntity> sweetFoodEntityList = new ArrayList<>();
     private List<SweetCategoryEntity> sweetCategoryEntityList = new ArrayList<>();
@@ -218,6 +223,7 @@ public class HomeFragment extends BaseFragment {
                 totalParice += sweetFoodEntity.getFoodPrice();
             }
             tvTotalPrice.setText("￥" + totalParice);
+            ViewUtils.setViewSelectAnimation(getActivity(), ivShopCar);
         } else {
             tvFoodCount.setVisibility(View.GONE);
             tvToOrderPage.setVisibility(View.GONE);
