@@ -8,3 +8,4 @@
 - 订单详情结算功能
 
 ### 效果图 ###
+![](https://github.com/xiedong11/FoodOrder/blob/master/picture/GIF.gif)
